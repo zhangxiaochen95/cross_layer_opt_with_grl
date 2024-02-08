@@ -1,0 +1,3 @@
+key_size: 16  # Size of signatures and queries in multi-agent communication
+msg_size: 64  # Size of messages in multi-agent communication
+n_rounds: 1  # Rounds of multi-agent communication

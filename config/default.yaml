@@ -1,0 +1,53 @@
+# --- Common parameters ---
+use_cuda: True  # Whether CUDA is used
+cuda_idx: 0  # Index of CUDA
+record_tests: False  # Whether to save test results
+use_wandb: False  # Whether to use wandb to record history
+
+# --- Components ---
+runner: "base"  # Runner
+policy: 'shared'  # Policy to make decisions
+
+agent: "rnn"  # Agent (actor) type
+critic:  # Critic type
+obs: 'flat'  # Local observation format
+shared_obs:  # Shared observation format
+state:  # State format
+comm:  # Communication protocol
+
+# --- Running parameters ---
+total_env_steps: 200000  # Total number of env steps to run
+rollout_len:  # Number of transitions to collect in each time
+warmup_steps: 0  # Number of env steps for random exploration
+update_after: 0  # Number of env steps before starting update
+steps_per_session: 20000  # Number of env steps per session
+test_interval: 20000  # Number of env steps between tests
+save_interval: 100000  # Interval to save checkpoints
+n_test_episodes: 10  # Number of episodes to run in each test
+
+# --- RL hyperparameters ---
+lr: 0.0005  # Learning rate
+optim_eps: 0.00001  # eps used by Adam optimizer
+gamma: 0.99  # Discount factor
+buffer_size: 5000  # Maximum number of samples (sequences) held by replay buffer
+data_chunk_len:  # Length of sequences
+batch_size: 32  # Minibatch size
+target_update_mode: "soft"  # Whether soft/hard target update is used
+target_update_interval: 200  # Number of env steps between hard target updates
+polyak: 0.995  # Polyak factor used in soft target update
+
+use_huber_loss: False  # Whether huber loss is used for Q function
+max_grad_norm: 10.0  # Maximum norm of gradients for clipping
+anneal_lr: False  # Whether learning rate annealing is used
+normalize_reward: False  # Whether reward normalization is used
+max_reward_limit: 10.0  # Reward range for clipping
+use_time_limit: False  # Whether to truncate episode when maximum step number is reached
+alert_episode_limit: False  # Whether arrival of episode limit is reported in info
+
+hidden_size: 64  # Hidden of policy/actor network
+activation: "relu"  # Activation function between hidden layers
+n_layers: 2  # Number of fully-connected layers in flat observation encoder
+n_heads: 4  # Number of attention heads in relational observation encoder
+use_feat_norm: False  # Apply layer normalization to observations
+use_layer_norm: False  # Use layer normalization between hidden layers
+use_dueling: False  # Use dueling layer at the end of policy/actor network

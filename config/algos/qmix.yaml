@@ -1,0 +1,29 @@
+learner: "q"
+state: "flat"
+
+# --- Buffer ---
+buffer: "replay_buffer"
+pre_decision_fields:
+  - "obs"
+  - "h"
+  - "state"
+post_decision_fields:
+  - "actions"
+  - "rewards"
+  - "terminated"
+
+# --- Action selection ---
+action_selector: "epsilon_greedy"  # Action selector
+eps_start: 1.0  # Initial exploration rate
+eps_end: 0.05  # Final exploration rate
+eps_anneal_time: 50000  # Number of env steps to anneal exploration rate
+
+# --- Q-learning extensions ---
+use_double_q: True  # Whether double Q-learning is used
+use_dueling_ar: False  # Whether dueling architecture is used
+
+# --- Mixer parameters ---
+mixer: 'qmix'  # Mixer to combine individual state-action values
+mixing_embed_dim: 32  # Size of mixing network
+hypernet_layers: 2  # Number of layers in hyper network (only support 1 and 2)
+hypernet_embed: 64  # Hidden size of hyper network (when hypernet_layers > 1)

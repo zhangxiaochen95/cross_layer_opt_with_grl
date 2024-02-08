@@ -1,0 +1,21 @@
+learner: "q"
+
+# --- Buffer ---
+buffer: "replay_buffer"
+pre_decision_fields:
+  - "obs"
+  - "h"
+post_decision_fields:
+  - "actions"
+  - "rewards"
+  - "terminated"
+
+# --- Action selection ---
+action_selector: "epsilon_greedy"  # Action selector
+eps_start: 1.0  # Initial exploration rate
+eps_end: 0.05  # Final exploration rate
+eps_anneal_time: 50000  # Number of env steps to anneal exploration rate
+
+# --- Q-learning extensions ---
+use_double_q: True  # Whether double Q-learning is used
+use_dueling_ar: False  # Whether dueling architecture is used
